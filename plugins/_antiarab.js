@@ -1,47 +1,62 @@
-// TheMystic-Bot-MD@BrunoSobrino - _antiarab.js
+import axios from 'axios';
 
+let handler = async (m, { conn }) => {
+    conn.autoai = conn.autoai ? conn.autoai : {};
 
-const handler = (m) => m;
-handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }) {
-  const datas = global
-  const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+    // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
+    if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-  const tradutor = _translate.plugins._antiarab
-  // Para configurar o idioma, na raiz do projeto altere o arquivo config.json
-  // Para configurar el idioma, en la raíz del proyecto, modifique el archivo config.json.
-  // To set the language, in the root of the project, modify the config.json file.
+    let name = "JITOSSA AI";
+    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
-  /* if (m.message) {
-    console.log(m.message)
-  }*/
-  if (!m.isGroup) return !1;
-  const chat = global.db.data.chats[m.chat];
-  const bot = global.db.data.settings[conn.user.jid] || {};
-  if (isBotAdmin && chat.antiArab2 && !isAdmin && !isOwner && !isROwner && bot.restrict) {
-    if (m.sender.startsWith('212' || '212')) {
-      m.reply(tradutor.texto1);
-      const responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
-      if (responseb[0].status === '404') return;
+    const messages = [
+        { role: "system", content: `أنا بوت واتساب، اسمي ${name}` },
+        { role: "user", content: m.text }
+    ];
+
+    try {
+        const response = await axios.post("https://deepenglish.com/wp-json/ai-chatbot/v1/chat", {
+            messages
+        });
+        const responseData = response.data;
+        const hasil = responseData;
+        await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }});
+        m.reply(hasil.answer);
+    } catch (error) {
+        console.error("حدث خطأ أثناء جلب البيانات:", error);
+        throw error;
     }
+}
 
-    if (m.sender.startsWith('265' || '265')) {
-      m.reply(tradutor.texto2);
-      const responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
-      if (responseb[0].status === '404') return;
+handler.before = async (m, { conn }) => {
+    conn.autoai = conn.autoai ? conn.autoai : {};
+
+    // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
+    if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
+
+    let name = "JITOSSA AI";
+    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
+
+    const messages = [
+        { role: "system", content: `أنا بوت واتساب، اسمي ${name}` },
+        { role: "user", content: m.text }
+    ];
+
+    try {
+        const response = await axios.post("https://deepenglish.com/wp-json/ai-chatbot/v1/chat", {
+            messages
+        });
+        const responseData = response.data;
+        const hasil = responseData;
+        await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }});
+        m.reply(hasil.answer);
+    } catch (error) {
+        console.error("حدث خطأ أثناء جلب البيانات:", error);
+        throw error;
     }
+}
 
-    if (m.sender.startsWith('92' || '92')) {
-      m.reply(tradutor.texto3);
-      const responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
-      if (responseb[0].status === '404') return;
-    }
-
-    if (m.sender.startsWith('234' || '234')) {
-      m.reply(tradutor.texto3);
-      const responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
-      if (responseb[0].status === '404') return;
-    }                                                       
-  }
-};
+handler.command = ['autoai'];
+handler.tags = ["ai"]
+handler.help = ['autoai']
 export default handler;
