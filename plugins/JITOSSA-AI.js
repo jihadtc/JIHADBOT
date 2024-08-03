@@ -7,7 +7,7 @@ let handler = async (m, { conn }) => {
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
     let name = "JIDOX AI";
-    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
+    await conn.sendMessage(m.chat, { react: { text: `📜`, key: m.key }});
 
     const messages = [
         { role: "system", content: `أنت اسمك ${name} صنعك صديقك jihad هذا هو الانستغرام الخاص بjihad Instagram.com/@jihad_tc ، استعمل رموز رجولية عند الإجابة` },
