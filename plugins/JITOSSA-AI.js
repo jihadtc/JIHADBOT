@@ -6,11 +6,11 @@ let handler = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JITOSSA AI";
+    let name = "JIDOX AI";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `أنا بوت واتساب، اسمي ${name}` },
+        { role: "system", content: `أنت اسمك ${name} صنعك صديقك jihad هذا هو الانستغرام الخاص بjihad Instagram.com/@jihad_tc ، استعمل رموز رجولية عند الإجابة` },
         { role: "user", content: m.text }
     ];
 
@@ -34,11 +34,11 @@ handler.before = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JITOSSA AI";
+    let name = "JIDOX AI";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `أنا بوت واتساب، اسمي ${name}` },
+        { role: "system", content: `أنت اسمك ${name} صنعك صديقك jihad هذا هو الانستغرام الخاص بjihad Instagram.com/@jihad_tc ، استعمل رموز رجولية عند الإجابة` },
         { role: "user", content: m.text }
     ];
 
