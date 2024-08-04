@@ -1,1 +1,112 @@
-function _0x4024(_0x181aea,_0x25aa8e){const _0x2c3c59=_0x2c3c();return _0x4024=function(_0x402403,_0x5d6393){_0x402403=_0x402403-0x1cb;let _0x59807c=_0x2c3c59[_0x402403];return _0x59807c;},_0x4024(_0x181aea,_0x25aa8e);}const _0x3d3090=_0x4024;(function(_0x4441ca,_0x49972f){const _0x1db55f=_0x4024,_0x8eaf65=_0x4441ca();while(!![]){try{const _0x1d213b=-parseInt(_0x1db55f(0x1d8))/0x1+parseInt(_0x1db55f(0x1dd))/0x2*(-parseInt(_0x1db55f(0x1d1))/0x3)+-parseInt(_0x1db55f(0x1e2))/0x4+-parseInt(_0x1db55f(0x1da))/0x5+parseInt(_0x1db55f(0x1cc))/0x6*(-parseInt(_0x1db55f(0x1df))/0x7)+-parseInt(_0x1db55f(0x1e0))/0x8+-parseInt(_0x1db55f(0x1d7))/0x9*(-parseInt(_0x1db55f(0x1e1))/0xa);if(_0x1d213b===_0x49972f)break;else _0x8eaf65['push'](_0x8eaf65['shift']());}catch(_0x1d2fee){_0x8eaf65['push'](_0x8eaf65['shift']());}}}(_0x2c3c,0xbeb57));import _0x213c26 from'node-fetch';const handler=async function(_0x61bfe0,{conn:_0x14d10c}){const _0x51c8be=_0x4024,_0x5620ec=_0x61bfe0[_0x51c8be(0x1d0)][_0x51c8be(0x1d2)]('\x20');try{if(_0x5620ec['length']>0x0){_0x61bfe0[_0x51c8be(0x1de)](wait);const _0x18ebb9=_0x5620ec[0x0];let _0x1dcf19=await(await _0x213c26('https://api.lolhuman.xyz/api/instagram?apikey=GataDios&url='+_0x18ebb9))['json']();if(!_0x1dcf19[_0x51c8be(0x1ce)]||_0x1dcf19[_0x51c8be(0x1ce)][_0x51c8be(0x1d3)]===0x0)throw _0x51c8be(0x1d9);_0x14d10c['sendFile'](_0x61bfe0[_0x51c8be(0x1e3)],_0x1dcf19[_0x51c8be(0x1ce)][0x0],'','*تابع\x20صاحب\x20البوت\x20في\x20الإنستجرام\x20❤️*\x20\x0a\x20www.instagram.com/ovmar_1',_0x61bfe0);for(let _0x325948 of _0x1dcf19[_0x51c8be(0x1ce)]){let _0x450e4b=_0x61bfe0[_0x51c8be(0x1cb)][0x0]||_0x61bfe0[_0x51c8be(0x1e4)]||_0x14d10c['parseMention'](_0x5620ec[0x0])||_0x5620ec[0x0][_0x51c8be(0x1db)](/[@.+-]/g,'')[_0x51c8be(0x1db)]('\x20','')+_0x51c8be(0x1cf)||'';_0x450e4b&&_0x14d10c[_0x51c8be(0x1d5)](_0x61bfe0[_0x51c8be(0x1e3)],_0x325948,_0x61bfe0,null);}}}catch(_0x5ac011){console[_0x51c8be(0x1d6)](_0x5ac011),_0x61bfe0[_0x51c8be(0x1de)](_0x51c8be(0x1cd));}};handler[_0x3d3090(0x1dc)]=/^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:tv\/|p\/|reel\/)(?:\S+)?$/ig,handler[_0x3d3090(0x1d4)]=new RegExp();function _0x2c3c(){const _0x2bfc15=['reply','2621066ABotzG','8632664lSIpod','530PWznVw','843044kiXvwh','chat','sender','mentionedJid','6DxwHhy','حدث\x20خطأ\x20أثناء\x20معالجة\x20طلبك.','result','@s.whatsapp.net','text','3iqZWXD','split','length','command','sendFile','log','1004427zBHIrQ','768926myGLsE','لا\x20يمكن\x20العثور\x20على\x20الفيديو\x20في\x20الرابط','6184830zvcDPd','replace','customPrefix','2927284sghSfR'];_0x2c3c=function(){return _0x2bfc15;};return _0x2c3c();}export default handler;
+import fetch from 'node-fetch';
+import axios from 'axios';
+import instagramGetUrl from 'instagram-url-direct';
+import { instagram } from '@xct007/frieren-scraper';
+import { instagramdl } from '@bochilteam/scraper';
+import instagramDl from '@sasmeee/igdl';
+import { fileTypeFromBuffer } from 'file-type';
+
+const handler = async (m, { conn, args, command, usedPrefix }) => {
+  const datas = global;
+  const idioma = datas.db.data.users[m.sender].language;
+  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`));
+  const tradutor = _translate.plugins.descargas_instagram;
+
+  if (!args[0]) throw `${tradutor.texto1} _${usedPrefix + command} https://www.instagram.com/reel/C8sWV3Nx_GZ/?igsh=MWZoeTY2cW01Nzg1bQ==`;
+  await m.reply(global.wait);
+
+  try {
+    const response = await fetch(`${global.MyApiRestBaseUrl}/api/v1/igdl?url=${encodeURIComponent(args[0])}&apikey=${global.MyApiRestApikey}`);
+    const json = await response.json();
+    if (json.success && json.data.length > 0) {
+      for (const item of json.data) {
+        if (item.type === 'video') {
+          await conn.sendMessage(m.chat, { video: { url: item.url_download } }, { quoted: m });
+        } else if (item.type === 'audio') {
+          await conn.sendMessage(m.chat, { audio: { url: item.url_download }, mimetype: 'audio/mp4' }, { quoted: m });
+        }
+      }
+    } else {
+      throw new Error('API personalizada falló');
+    }
+  } catch (err) {
+    console.error('Error en API personalizada:', err.message);
+    try {
+      const img = await instagramDl(args[0]);
+      for (let i = 0; i < img.length; i++) {
+        const bufferInfo = await getBuffer(img[i].download_link);
+        if (!bufferInfo) throw new Error('Archivo no válido');
+        
+        if (bufferInfo.detectedType.mime.startsWith('image/')) {
+          await conn.sendMessage(m.chat, { image: { url: img[i].download_link } }, { quoted: m });
+        } else if (bufferInfo.detectedType.mime.startsWith('video/')) {
+          await conn.sendMessage(m.chat, { video: { url: img[i].download_link } }, { quoted: m });
+        }
+      }
+    } catch (err) {
+      console.error('Error en instagramDl:', err.message);
+      try {
+        const datTa = await instagram.download(args[0]);
+        for (const urRRl of datTa) {
+          const shortUrRRl = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text();
+          const tXXxt = `${tradutor.texto2} _${shortUrRRl}_`.trim();
+          await conn.sendFile(m.chat, urRRl.url, 'error.mp4', tXXxt, m);
+          await new Promise((resolve) => setTimeout(resolve, 10000));
+        }
+      } catch (err) {
+        console.error('Error en instagram.download:', err.message);
+        try {
+          const resultss = await instagramGetUrl(args[0]);
+          const shortUrl2 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text();
+          const txt2 = `${tradutor.texto2} _${shortUrl2}_`.trim();
+          await conn.sendFile(m.chat, resultss.url_list[0], 'error.mp4', txt2, m);
+        } catch (err) {
+          console.error('Error en instagramGetUrl:', err.message);
+          try {
+            const resultssss = await instagramdl(args[0]);
+            const shortUrl3 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text();
+            const txt4 = `${tradutor.texto2} _${shortUrl3}_`.trim();
+            for (const { url } of resultssss) await conn.sendFile(m.chat, url, 'error.mp4', txt4, m);
+          } catch (err) {
+            console.error('Error en instagramdl:', err.message);
+            try {
+              const human = await fetch(`https://api.lolhuman.xyz/api/instagram?apikey=${lolkeysapi}&url=${args[0]}`);
+              const json = await human.json();
+              const videoig = json.result;
+              const shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text();
+              const txt1 = `${tradutor.texto2} _${shortUrl1}_`.trim();
+              await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m);
+            } catch (err) {
+              console.error('Error en lolhuman API:', err.message);
+              throw `${tradutor.texto3}`;
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+handler.command = /^(instagramdl|instagram|igdl|ig|instagramdl2|instagram2|igdl2|ig2|instagramdl3|instagram3|igdl3|ig3)$/i;
+export default handler;
+
+const getBuffer = async (url, options = {}) => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url,
+      headers: { 'DNT': 1, 'Upgrade-Insecure-Request': 1 },
+      ...options,
+      responseType: 'arraybuffer'
+    });
+    const buffer = Buffer.from(res.data, 'binary');
+    const detectedType = await fileTypeFromBuffer(buffer);
+    if (!detectedType || !['image/jpeg', 'image/png', 'video/mp4'].includes(detectedType.mime)) {
+      throw new Error('Tipo de archivo no válido');
+    }
+    return { buffer, detectedType };
+  } catch (error) {
+    console.error('Error en getBuffer:', error.message);
+    return null;
+  }
+};
