@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JIDOX AI";
+    let name = "JIDOX BOT";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
@@ -34,7 +34,7 @@ handler.before = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JIDOX AI";
+    let name = "JIDOX BOT";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
