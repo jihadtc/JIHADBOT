@@ -7,7 +7,7 @@ let handler = async (m, { conn }) => {
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
     let name = "JIDOX AI";
-    await conn.sendMessage(m.chat, { react: { text: `📜`, key: m.key }});
+    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
         { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
@@ -35,7 +35,7 @@ handler.before = async (m, { conn }) => {
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
     let name = "JIDOX AI";
-    await conn.sendMessage(m.chat, { react: { text: `📜`, key: m.key }});
+    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
         { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
