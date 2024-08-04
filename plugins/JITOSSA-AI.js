@@ -10,7 +10,7 @@ let handler = async (m, { conn }) => {
     await conn.sendMessage(m.chat, { react: { text: `📜`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `أنت اسمك ${name} صنعك صديقك jihad هذا هو الانستغرام الخاص بjihad Instagram.com/@jihad_tc ، استعمل رموز رجولية عند الإجابة` },
+        { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
         { role: "user", content: m.text }
     ];
 
@@ -38,7 +38,7 @@ handler.before = async (m, { conn }) => {
     await conn.sendMessage(m.chat, { react: { text: `📜`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `أنت اسمك ${name} صنعك صديقك jihad هذا هو الانستغرام الخاص بjihad Instagram.com/@jihad_tc ، استعمل رموز رجولية عند الإجابة` },
+        { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
         { role: "user", content: m.text }
     ];
 
