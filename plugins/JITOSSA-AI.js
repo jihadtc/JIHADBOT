@@ -6,11 +6,11 @@ let handler = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JIDOX BOT";
+    let name = "JIDOX AI";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
+        { role: "system", content: `my name is ${name}, I have 17 yo, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
         { role: "user", content: m.text }
     ];
 
@@ -34,11 +34,11 @@ handler.before = async (m, { conn }) => {
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
     if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
 
-    let name = "JIDOX BOT";
+    let name = "JIDOX AI";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
 
     const messages = [
-        { role: "system", content: `my name is ${name}, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
+        { role: "system", content: `my name is ${name}, I have 17 yo, made by my brother jihad. This is jihad’s Instagram Instagram.com/@jihad_tc, I use masculine emojis when answering` },
         { role: "user", content: m.text }
     ];
 
