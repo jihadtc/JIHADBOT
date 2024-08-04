@@ -1,1 +1,78 @@
-(function(_0xc86b35,_0x3b83fb){const _0x123978=_0x4973,_0x205fc4=_0xc86b35();while(!![]){try{const _0x4caa99=-parseInt(_0x123978(0x19a))/0x1+-parseInt(_0x123978(0x19e))/0x2+-parseInt(_0x123978(0x198))/0x3+parseInt(_0x123978(0x1a7))/0x4+-parseInt(_0x123978(0x19f))/0x5*(-parseInt(_0x123978(0x197))/0x6)+parseInt(_0x123978(0x1b3))/0x7*(parseInt(_0x123978(0x19b))/0x8)+-parseInt(_0x123978(0x1af))/0x9*(-parseInt(_0x123978(0x1a2))/0xa);if(_0x4caa99===_0x3b83fb)break;else _0x205fc4['push'](_0x205fc4['shift']());}catch(_0xbbff0){_0x205fc4['push'](_0x205fc4['shift']());}}}(_0x3473,0xe720a));import _0x560da5 from'api-dylux';function _0x3473(){const _0x4d1987=['title','split','download','\x20MB*','117VoOdQf','\x0a\x0a▢\x20_يتجاوز\x20الملف\x20حد\x20التنزيل_\x20*+','error','تم\x20تنزيل\x20المقطع\x20بنجاح','77ZdkfZe','\x0a▢\x20*📟*\x20:\x20mp4\x0a▢\x20*🎞️*\x20:\x20','video/mp4','\x0a\x20≡\x20\x20*التحميل\x20من\x20اليوتوب*\x0a\x0a▢\x20*📌*\x20:\x20','6726TkEcqo','2491968OoPzpF','trim','253891iDdlkC','454456eWxYrL','match','thumbnail','2100854cbyUOo','2065rTZkds','reply','sendMessage','372140ZTJJAx','text','360p','video','catch','6040160HGjGao','data','\x20≡\x20\x20*التحميل\x20من\x20يوتوب*\x0a\x0a▢\x20*⚖️Size*\x20:\x20','fileSizeH'];_0x3473=function(){return _0x4d1987;};return _0x3473();}import{youtubedl,youtubedlv2}from'@bochilteam/scraper';let limit=0x13880;export async function before(_0x573de6){const _0x4f8c29=_0x4973,_0x376f26=/^https?:\/\/(www\.)?youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$/,_0x492167=_0x573de6[_0x4f8c29(0x1a3)]['trim']()[_0x4f8c29(0x19c)](_0x376f26),_0x2d1f42='\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';if(!_0x492167)return![];await _0x573de6[_0x4f8c29(0x1a0)](wait);try{let _0x390b0c=_0x4f8c29(0x1a4),_0x45f029=_0x492167[0x0];const _0x1ad90b=await youtubedl(_0x45f029)[_0x4f8c29(0x1a6)](async()=>await youtubedlv2(_0x45f029)),_0xcb5205=await _0x1ad90b['video'][_0x390b0c][_0x4f8c29(0x1ad)](),_0x514a1a=await _0x1ad90b[_0x4f8c29(0x1ab)],_0x1b3ed2=await _0x1ad90b[_0x4f8c29(0x1a5)][_0x390b0c][_0x4f8c29(0x1aa)];if(_0x1b3ed2[_0x4f8c29(0x1ac)]('MB')[0x0]>=limit)return _0x573de6['reply'](_0x4f8c29(0x1a9)+_0x1b3ed2+'\x0a▢\x20*🎞️الجودة*\x20:\x20'+_0x390b0c+_0x4f8c29(0x1b0)+limit+_0x4f8c29(0x1ae));let _0x5e50f1=(_0x4f8c29(0x196)+_0x514a1a+_0x4f8c29(0x1b4)+_0x390b0c+'\x0a▢\x20*⚖️*\x20:\x20'+_0x1b3ed2+'\x0a')[_0x4f8c29(0x199)](),_0x3b600d=_0x4f8c29(0x1b2),_0x3fdb5c={'video':{'url':_0xcb5205},'mimetype':_0x4f8c29(0x195),'caption':_0x5e50f1,'contextInfo':{'externalAdReply':{'showAdAttribution':!![],'mediaType':0x2,'mediaUrl':_0x45f029,'title':_0x514a1a,'body':_0x3b600d,'sourceUrl':_0x45f029,'thumbnail':await(await this['getFile'](_0x1ad90b[_0x4f8c29(0x19d)]))[_0x4f8c29(0x1a8)]}}};await this[_0x4f8c29(0x1a1)](_0x573de6['chat'],_0x3fdb5c,{'quoted':_0x573de6});}catch(_0x1f2c64){await _0x573de6['reply'](_0x4f8c29(0x1b1));}}function _0x4973(_0x46bebf,_0x256754){const _0x347360=_0x3473();return _0x4973=function(_0x4973d3,_0x5af32e){_0x4973d3=_0x4973d3-0x195;let _0x430c85=_0x347360[_0x4973d3];return _0x430c85;},_0x4973(_0x46bebf,_0x256754);}export const disabled=![];
+import fs from 'fs';
+import path from 'path';
+import ytdl from 'youtubedl-core';
+import { Client } from 'undici';
+import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
+  let chat = global.db.data.chats[m.chat];
+  if (!args || !args[0]) throw `✳️ Example:\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`;
+  if (!args[0].match(/youtu/gi)) throw `❎ Verify that the YouTube link`;
+  await m.react('⏳')
+
+  const videoDetails = await ytddl(args[0]);
+  if (!videoDetails) throw `❎ Error downloading video`;
+
+  const { url, title, author, description } = videoDetails;
+
+  const response = await fetch(url);
+  const data = await response.buffer();
+
+  const caption = `✼ ••๑⋯❀ Y O U T U B E ❀⋯⋅๑•• ✼
+	  
+❏ Title: ${title || 'Unknown'}
+❒ Author: ${author || 'Unknown'}
+❒ Description: ${description || 'No description available'}
+❒ Link: ${args[0]}
+⊱─━⊱༻●༺⊰━─⊰`;
+
+  conn.sendFile(m.chat, data, `${title || 'video'}.mp4`, caption, m, false, { asDocument: chat.useDocument });
+  await m.react('✅')
+};
+
+
+handler.help = ['ytmp4 <yt-link>'];
+handler.tags = ['downloader'];
+handler.command = ['ytmp4'];
+handler.diamond = false;
+
+export default handler;
+
+async function getCookies() {
+  const cookiesPath = path.resolve(__dirname, '../Assets/cookies.json');
+  if (!fs.existsSync(cookiesPath)) {
+    throw new Error('Cookies file not found');
+  }
+  return JSON.parse(fs.readFileSync(cookiesPath, 'utf-8'));
+}
+
+async function createClient() {
+  const cookies = await getCookies();
+  return new Client("https://www.youtube.com", {
+    headers: {
+      "Cookie": cookies.map(cookie => `${cookie.name}=${cookie.value}`).join('; ')
+    }
+  });
+}
+
+async function ytddl(url) {
+  try {
+    const client = await createClient();
+    const yt = await ytdl.getInfo(url, { requestOptions: { client: client } });
+    const link = ytdl.chooseFormat(yt.formats, { quality: 'highest', filter: 'audioandvideo' });
+
+    return {
+      url: link.url,
+      title: yt.videoDetails.title,
+      author: yt.videoDetails.author.name,
+      description: yt.videoDetails.description,
+    };
+  } catch (error) {
+    console.error("An error occurred:", error);
+    return null;  // Ensure a null is returned on error
+  }
+}
