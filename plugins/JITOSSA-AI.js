@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
     conn.autoai = conn.autoai ? conn.autoai : {};
 
     // تجاهل الرسائل الفارغة أو التي تحتوي على روابط
-    if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://")) return;
+    if (!m.text || m.isBaileys || m.text.includes("http://") || m.text.includes("https://") || m.text.includes(.ig)) return;
 
     let name = "*_JIDOX AI_*";
     await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
